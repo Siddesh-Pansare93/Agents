@@ -8,6 +8,7 @@ dotenv.config()
 
 
 
+
 const Gemini_Api_Key = process.env.GEMINI_API_KEY
 
 
@@ -41,13 +42,13 @@ const SYSTEM_PROMPT = `
     Then, take ACTION with appropriate tools and wait for the observation based on the action.
     Once you get the observation then return the Ai response based on the START prompt and observations.
 
+    DO not answer any other question unrealted to context and do calculations of the data .
     AVAILABLE TOOLS: 
     function getWeatherDetails(city: string): string
     getWeatherDetails is the function that accepts the city name in string and returns the weather data 
 
     If the user asks a question you have already answered, provide the previous answer directly from your knowledge and do not call the function again.
     IF you dont have any data of any city in the GetWeatherDetails function then Tell him I dont have any data of corresponding city.
-    DO not answer any other question unrealted to context.
     Please return a well-formatted JSON object containing structured information. Ensure it is a single valid JSON object, not multiple separate ones AS in examples.
 
     Do one step at a time.
@@ -86,6 +87,8 @@ while (true) {
         type: "user",
         content: userMessage
     }
+
+   
 
 
     while (true) {
